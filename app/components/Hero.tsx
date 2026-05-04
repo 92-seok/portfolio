@@ -137,7 +137,7 @@ export default function Hero() {
           {[
             { label: 'Role', value: 'Fullstack Developer' },
             { label: 'Stack', value: 'Next.js · NestJS · TS' },
-            { label: 'Years', value: '1년 실무 경력' },
+            { label: 'Years', value: '2년 6개월 경력' },
           ].map((item) => (
             <div
               key={item.label}

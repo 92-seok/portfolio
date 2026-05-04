@@ -7,7 +7,7 @@ export default function Contact() {
     <section id="contact" className="section" style={{ background: 'var(--paper)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <RevealWrapper direction="up">
-          <span className="section-eyebrow">05 — Contact</span>
+          <span className="section-eyebrow">06 — Contact</span>
           <h2 className="section-title">연락하기</h2>
           <div className="divider" />
         </RevealWrapper>

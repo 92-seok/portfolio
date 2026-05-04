@@ -3,11 +3,15 @@
 import { IconType } from 'react-icons';
 import {
   SiVuedotjs, SiReact, SiNextdotjs, SiTypescript, SiJavascript,
-  SiTailwindcss, SiSass, SiAxios, SiReactquery,
+  SiTailwindcss, SiSass, SiAxios, SiReactquery, SiReactrouter,
+  SiHtml5, SiCss,
   SiNestjs, SiNodedotjs, SiMysql, SiMariadb,
   SiNginx, SiVercel, SiGit, SiGithub, SiGitea,
 } from 'react-icons/si';
-import { TbBrandTypescript, TbApi, TbDatabase, TbServerCog, TbServer2 } from 'react-icons/tb';
+import {
+  TbBrandTypescript, TbApi, TbDatabase, TbServerCog, TbServer2,
+  TbShieldLock, TbShieldCheck, TbNetwork,
+} from 'react-icons/tb';
 import RevealWrapper from './ui/RevealWrapper';
 
 type SkillItem = {
@@ -49,10 +53,13 @@ const SKILL_GROUPS: SkillCategory[] = [
       { name: 'React', level: 'advanced', icon: SiReact },
       { name: 'Next.js', level: 'advanced', icon: SiNextdotjs },
       { name: 'TypeScript', level: 'advanced', icon: SiTypescript },
-      { name: 'JavaScript', level: 'advanced', icon: SiJavascript },
+      { name: 'JavaScript (ES6+)', level: 'advanced', icon: SiJavascript },
+      { name: 'HTML5', level: 'advanced', icon: SiHtml5 },
+      { name: 'CSS3', level: 'advanced', icon: SiCss },
       { name: 'Tailwind CSS', level: 'advanced', icon: SiTailwindcss },
       { name: 'Sass', level: 'advanced', icon: SiSass },
       { name: 'React Query', level: 'advanced', icon: SiReactquery },
+      { name: 'React Router', level: 'advanced', icon: SiReactrouter },
       { name: 'Axios', level: 'advanced', icon: SiAxios },
     ],
   },
@@ -69,7 +76,7 @@ const SKILL_GROUPS: SkillCategory[] = [
     ],
   },
   {
-    category: 'DevOps & Tools',
+    category: 'DevOps & Infra',
     color: 'amber',
     items: [
       { name: 'PM2', level: 'intermediate', icon: TbServerCog },
@@ -79,6 +86,9 @@ const SKILL_GROUPS: SkillCategory[] = [
       { name: 'Git', level: 'advanced', icon: SiGit },
       { name: 'GitHub', level: 'advanced', icon: SiGithub },
       { name: 'Gitea', level: 'advanced', icon: SiGitea },
+      { name: 'VPN', level: 'intermediate', icon: TbShieldLock },
+      { name: 'AhnLab Firewall', level: 'intermediate', icon: TbShieldCheck },
+      { name: 'Network', level: 'intermediate', icon: TbNetwork },
     ],
   },
 ];
@@ -145,6 +155,7 @@ export default function Skills() {
                       display: 'grid',
                       gridTemplateColumns: 'repeat(auto-fill, minmax(86px, 1fr))',
                       gap: '0.6rem',
+                      marginBottom: '1.25rem',
                     }}
                   >
                     {group.items.map((item) => {
@@ -213,7 +224,7 @@ export default function Skills() {
                   <div
                     style={{
                       marginTop: 'auto',
-                      paddingTop: '1rem',
+                      paddingTop: '1.25rem',
                       borderTop: '1px dashed var(--border)',
                       display: 'flex',
                       gap: '0.85rem',

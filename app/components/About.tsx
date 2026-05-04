@@ -174,6 +174,101 @@ export default function About() {
               </RevealWrapper>
             ))}
 
+            {/* Operations — 현장·인프라 운영 경험 */}
+            <RevealWrapper direction="up" delay={460} style={{ gridColumn: '1 / -1' }}>
+              <div
+                className="card"
+                style={{
+                  padding: '1.5rem 1.75rem',
+                  borderLeft: '3px solid var(--violet)',
+                  background:
+                    'linear-gradient(180deg, var(--paper-card) 0%, var(--violet-subtle) 100%)',
+                }}
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.6rem',
+                    marginBottom: '0.85rem',
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: '0.65rem',
+                      color: 'var(--violet)',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.18em',
+                    }}
+                  >
+                    Operations
+                  </span>
+                  <span style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+                  <span
+                    style={{
+                      fontFamily: "'Pretendard Variable', sans-serif",
+                      fontSize: '0.78rem',
+                      fontWeight: 600,
+                      color: 'var(--ink-muted)',
+                    }}
+                  >
+                    {PROFILE.operations.title}
+                  </span>
+                </div>
+
+                <p
+                  style={{
+                    fontFamily: "'Pretendard Variable', sans-serif",
+                    fontSize: '0.88rem',
+                    color: 'var(--ink-muted)',
+                    lineHeight: 1.7,
+                    marginBottom: '1rem',
+                  }}
+                >
+                  {PROFILE.operations.description}
+                </p>
+
+                <ul
+                  style={{
+                    listStyle: 'none',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.5rem',
+                    padding: 0,
+                  }}
+                >
+                  {PROFILE.operations.bullets.map((b) => (
+                    <li
+                      key={b}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '0.55rem',
+                        fontFamily: "'Pretendard Variable', sans-serif",
+                        fontSize: '0.85rem',
+                        color: 'var(--ink)',
+                        lineHeight: 1.6,
+                      }}
+                    >
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          color: 'var(--violet)',
+                          marginTop: '0.05rem',
+                          flexShrink: 0,
+                          fontWeight: 700,
+                        }}
+                      >
+                        →
+                      </span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </RevealWrapper>
+
             {/* Vision — 앞으로의 방향 */}
             <RevealWrapper direction="up" delay={520} style={{ gridColumn: '1 / -1' }}>
               <div
@@ -208,12 +303,12 @@ export default function About() {
                   <span
                     style={{
                       fontFamily: "'Pretendard Variable', sans-serif",
-                      fontSize: '0.95rem',
-                      fontWeight: 700,
-                      color: 'var(--ink)',
+                      fontSize: '0.78rem',
+                      fontWeight: 600,
+                      color: 'var(--ink-muted)',
                     }}
                   >
-                    {/* {PROFILE.vision.title} */}
+                    {PROFILE.vision.title}
                   </span>
                 </div>
 

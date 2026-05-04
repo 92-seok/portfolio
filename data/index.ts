@@ -24,6 +24,27 @@ export interface ITimelineItem {
   detail: string;
 }
 
+export interface IEducationItem {
+  period: string;
+  school: string;
+  major: string;
+  status: '졸업' | '중퇴' | '수료';
+}
+
+export interface ICertificationItem {
+  date: string;
+  name: string;
+  status: string;
+  issuer: string;
+}
+
+export interface ITrainingItem {
+  period: string;
+  institution: string;
+  course: string;
+  topics: string[];
+}
+
 export interface IProfile {
   name: string;
   nickname: string;
@@ -35,6 +56,7 @@ export interface IProfile {
   companyPeriod: string;
   summary: string[];
   highlights: { label: string; desc: string }[];
+  operations: { title: string; description: string; bullets: string[] };
   vision: { title: string; description: string; bullets: string[] };
 }
 
@@ -46,18 +68,29 @@ export const PROFILE: IProfile = {
   phone: '010-9297-6763',
   location: '경기 성남시',
   company: '㈜우보재난시스템',
-  companyPeriod: '2024.05 ~ 현재 (1년)',
+  companyPeriod: '2023.10 ~ 현재 (2년 6개월)',
   summary: [
     'Vue 3에서 Next.js App Router로 시스템을 직접 마이그레이션하며 전체 아키텍처를 이해하는 개발자로 성장했습니다.',
     '관공서 납품 재난 시스템의 프론트엔드부터 서버 배포까지 실무 전반을 담당하며, 운영 환경에서 발생하는 이슈를 기능·UI 개선으로 해결해왔습니다.',
+    '재난 장비 유지보수·네트워크·서버 환경 구성을 직접 경험하며, 웹 서비스를 개발할 때 실제 운영 환경을 고려하는 시야를 키워왔습니다.',
     '사용자 흐름을 분석해 장비 점검 업무 시간을 30분에서 10분으로 단축한 경험을 바탕으로, 실제 사용하는 사람에게 가치 있는 서비스를 만드는 것을 목표로 합니다.',
   ],
   highlights: [
     { label: '1인 풀스택', desc: '기획부터 운영까지 전담' },
-    { label: '1년', desc: '실무 경력' },
+    { label: '2년 6개월', desc: '실무 경력' },
     { label: 'Vue → Next.js', desc: '마이그레이션 경험' },
     { label: '업무 67% 단축', desc: '30분 → 10분 개선' },
   ],
+  operations: {
+    title: '현장·인프라 운영 경험',
+    description:
+      '관공서 재난 장비 AS·유지보수와 사업 납품 서버 환경 구성을 직접 수행하며, 코드 바깥의 운영 환경을 이해하는 감각을 다져왔습니다.',
+    bullets: [
+      '기상·침수·차단 장비 유지보수 (강우·적설·AWS·LPR 차단기·예·경보 장비)',
+      '서버 환경 구성 및 네트워크 설정 (데이터 수집/중계 서버, VPN, LTE Router)',
+      '소하천 시스템 H/W·S/W 운영 지원 및 방화벽 통신 구성 (AhnLab 방화벽)',
+    ],
+  },
   vision: {
     title: '앞으로의 방향',
     description:
@@ -77,9 +110,10 @@ export const SKILLS: ISkillGroup[] = [
     items: [
       { name: 'Vue 3 / Composition API', level: 'expert' },
       { name: 'React / Next.js', level: 'advanced' },
-      { name: 'TypeScript / JavaScript', level: 'advanced' },
+      { name: 'TypeScript / JavaScript (ES6+)', level: 'advanced' },
+      { name: 'HTML5 / CSS3', level: 'advanced' },
       { name: 'Tailwind CSS / Sass', level: 'advanced' },
-      { name: 'React Query / Axios', level: 'advanced' },
+      { name: 'React Query / React Router / Axios', level: 'advanced' },
     ],
   },
   {
@@ -94,7 +128,7 @@ export const SKILLS: ISkillGroup[] = [
     ],
   },
   {
-    category: 'DevOps & Tools',
+    category: 'DevOps & Infra',
     color: 'emerald',
     items: [
       { name: 'PM2', level: 'intermediate' },
@@ -102,6 +136,7 @@ export const SKILLS: ISkillGroup[] = [
       { name: 'XAMPP', level: 'intermediate' },
       { name: 'Vercel', level: 'advanced' },
       { name: 'Git / GitHub / Gitea', level: 'advanced' },
+      { name: 'VPN / AhnLab Firewall / Network', level: 'intermediate' },
     ],
   },
 ];
@@ -300,10 +335,62 @@ export const PROJECTS: IProject[] = [
   },
 ];
 
+export const EDUCATION: IEducationItem[] = [
+  {
+    period: '2010.03 ~ 2010.08',
+    school: '신구대학교 (2·3년제)',
+    major: '시각디자인',
+    status: '중퇴',
+  },
+  {
+    period: '2007.03 ~ 2010.02',
+    school: '양영디지털고등학교',
+    major: '특성화/마이스터고 로봇과',
+    status: '졸업',
+  },
+];
+
+export const CERTIFICATIONS: ICertificationItem[] = [
+  {
+    date: '2026.03',
+    name: '정보처리산업기사',
+    status: '필기합격',
+    issuer: '한국산업인력공단',
+  },
+  {
+    date: '2010.02',
+    name: '1종 대형 운전면허',
+    status: '최종합격',
+    issuer: '경찰청 (운전면허시험관리단)',
+  },
+  {
+    date: '2009.07',
+    name: '전자기능사',
+    status: '최종합격',
+    issuer: '한국산업인력공단',
+  },
+];
+
+export const TRAINING: ITrainingItem[] = [
+  {
+    period: '2023.03 ~ 2023.07',
+    institution: '하이미디어IT인재개발원',
+    course: 'JAVA·AI/RPA/빅데이터를 활용한 E-커머스 개발자 양성 취업과정',
+    topics: ['Java / Spring / MyBatis', 'DB 설계 / SQL', 'AI + RPA 기반 자동화', '웹 서비스 구현 실습'],
+  },
+  {
+    period: '2021.03 ~ 2021.08',
+    institution: 'SBS아카데미컴퓨터아트학원',
+    course: '웹디자인 정규과정',
+    topics: ['HTML / CSS / JavaScript', 'Photoshop / Illustrator', '웹퍼블리싱 기초'],
+  },
+];
+
 export const TIMELINE: ITimelineItem[] = [
-  { period: '2024.05 ~', event: '㈜우보재난시스템 입사', detail: '시스템사업부 · 웹개발 담당' },
-  { period: '2024.08', event: '저수지 수위 대시보드 개발', detail: '1인 풀스택 (Node.js + Vue 3)' },
-  { period: '2024.11', event: 'Next.js 마이그레이션 착수', detail: 'Vue 3 → Next.js App Router' },
-  { period: '2025.01', event: '운영 시스템 자체 배포', detail: 'XAMPP + PM2로 woobo.online 직접 운영' },
-  { period: '2025.07', event: '대리 승진', detail: '연간 우수사원 · 분기 칭찬사원 선정' },
+  { period: '2023.10', event: '㈜우보재난시스템 입사', detail: '시스템사업부 · 웹개발 담당 (사원)' },
+  { period: '2024.05', event: '저수지 수위 대시보드 개발', detail: '1인 풀스택 (Node.js + Vue 3)' },
+  { period: '2024.10', event: '운영지원시스템 (Vue 3) 본격 개발', detail: 'JWT 인증 · 카카오맵 오버레이 · 점검 이력 CRUD' },
+  { period: '2025.04', event: '사원 → 대리 승진', detail: '입사 1년 6개월 만에 승진 · 연간 우수사원 · 분기 칭찬사원 선정' },
+  { period: '2025.10', event: 'Next.js 마이그레이션 착수', detail: 'Vue 3 → Next.js App Router · Vercel 배포' },
+  { period: '2026.03', event: '정보처리산업기사 필기합격', detail: '한국산업인력공단' },
 ];
