@@ -1,48 +1,61 @@
 @import "tailwindcss";
 
 /* =====================================================
-   2026 COLOR SYSTEM — Cloud Dancer Light Theme
+   2026 BRIGHT EDITORIAL — Cream · Soft Gray · Cyan/Violet/Mint
+   진짜 밝은 라이트 테마. 프린트 친화 + 가벼운 분위기.
 ===================================================== */
 :root {
-  /* Deep Gray 다크 베이스 */
-  --cloud-50:  #0F0F12;
-  --cloud-100: #1A1A1F;
-  --cloud-200: #2A2A32;
-  --cloud-300: #3A3A44;
-  --cloud-400: #4A4A54;
+  /* Paper — 따뜻한 크림 베이스 */
+  --paper:        #FAFAF7;
+  --paper-soft:   #F1EFE9;
+  --paper-card:   #FFFFFF;
+  --paper-deep:   #E8E5DD;
 
-  --void:    #16161A;
-  --surface: #1E1E24;
-  --elevated:#25252F;
-  --overlay: rgba(22,22,26,0.92);
+  /* Ink — 슬레이트 + 살짝 보라 톤 (cyan/violet 액센트와 어우러지게) */
+  --ink:          #1F1B2E;   /* deep slate-violet */
+  --ink-muted:    #56536A;   /* mid slate-violet */
+  --ink-faint:    #9491A8;   /* light slate-violet */
 
-  --border:        rgba(255, 255, 255, 0.10);
-  --border-subtle: rgba(255, 255, 255, 0.06);
+  /* Accent — Goldenrod (이전 cyan 자리, 변수명은 호환성 유지) */
+  --cyan:        #D97706;     /* amber-600 — primary accent (goldenrod) */
+  --cyan-hover:  #B45309;     /* amber-700 */
+  --cyan-glow:   rgba(217, 119, 6, 0.14);
+  --cyan-subtle: rgba(217, 119, 6, 0.08);
 
-  /* Text */
-  --text-primary:   #F0EFF4;
-  --text-secondary: #B0B0BA;
-  --text-muted:     #75758A;
+  --violet:        #8B5CF6;   /* violet-500 */
+  --violet-hover:  #7C3AED;
+  --violet-glow:   rgba(139, 92, 246, 0.10);
+  --violet-subtle: rgba(139, 92, 246, 0.08);
 
-  /* Accents */
-  --cyan:        #22D3EE;
-  --cyan-hover:  #06B6D4;
-  --cyan-glow:   rgba(34, 211, 238, 0.18);
-  --cyan-subtle: rgba(34, 211, 238, 0.10);
+  --emerald:        #10B981;  /* emerald-500 */
+  --emerald-glow:   rgba(16, 185, 129, 0.10);
+  --emerald-subtle: rgba(16, 185, 129, 0.08);
 
-  --violet:        #A78BFA;
-  --violet-hover:  #8B5CF6;
-  --violet-glow:   rgba(167, 139, 250, 0.18);
-  --violet-subtle: rgba(167, 139, 250, 0.10);
+  --amber:        #F59E0B;    /* amber-500 — DevOps용 */
+  --amber-glow:   rgba(245, 158, 11, 0.12);
+  --amber-subtle: rgba(245, 158, 11, 0.10);
 
-  --emerald:        #34D399;
-  --emerald-glow:   rgba(52, 211, 153, 0.15);
-  --emerald-subtle: rgba(52, 211, 153, 0.10);
+  /* Borders — 헤어라인 (ink와 같은 톤) */
+  --border:        rgba(31, 27, 46, 0.10);
+  --border-subtle: rgba(31, 27, 46, 0.06);
+  --border-strong: rgba(31, 27, 46, 0.20);
+
+  /* Legacy aliases — 컴포넌트 인라인 호환 */
+  --void:           var(--paper);
+  --surface:        var(--paper-soft);
+  --elevated:       var(--paper-card);
+  --overlay:        rgba(250, 250, 247, 0.92);
+  --text-primary:   var(--ink);
+  --text-secondary: var(--ink-muted);
+  --text-muted:     var(--ink-faint);
+  --signal:         var(--cyan);
+  --signal-hover:   var(--cyan-hover);
+  --signal-subtle:  var(--cyan-subtle);
 
   /* Semantic */
-  --success: #34D399;
-  --warning: #FBBF24;
-  --error:   #F87171;
+  --success: var(--emerald);
+  --warning: #F59E0B;
+  --error:   #EF4444;
 }
 
 /* =====================================================
@@ -57,83 +70,88 @@
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: var(--void);
-  color: var(--text-primary);
-  font-family: 'Pretendard', system-ui, sans-serif;
-  line-height: 1.6;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', system-ui, sans-serif;
+  font-variation-settings: "wght" 400;
+  line-height: 1.65;
   overflow-x: hidden;
 }
 
 /* =====================================================
    TYPOGRAPHY
 ===================================================== */
-.font-display { font-family: 'Pretendard', sans-serif; }
+.font-display { font-family: 'Pretendard Variable', 'Pretendard', sans-serif; }
 .font-mono    { font-family: 'JetBrains Mono', monospace; }
 
+::selection { background: var(--cyan); color: #FFFFFF; }
+
 /* =====================================================
-   AMBIENT BACKGROUND
+   BACKDROP — 따뜻한 크림 + 부드러운 파스텔 글로우
 ===================================================== */
 .ambient-bg {
-  background-color: var(--void);
+  background-color: var(--paper);
   background-image:
-    radial-gradient(ellipse 70% 50% at 10% 30%, var(--cyan-glow), transparent),
-    radial-gradient(ellipse 60% 45% at 90% 75%, var(--violet-glow), transparent),
-    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(22,22,26,0.3), transparent);
+    radial-gradient(ellipse 70% 50% at 12% 28%, rgba(217, 119, 6, 0.07), transparent 60%),
+    radial-gradient(ellipse 60% 45% at 88% 75%, rgba(139, 92, 246, 0.06), transparent 60%);
 }
 
-/* Noise texture overlay */
 .noise::after {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.048'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 0;
+  mix-blend-mode: multiply;
 }
 
 /* =====================================================
-   CARD
+   CARD — 흰 카드 + 부드러운 그림자
 ===================================================== */
 .card {
-  background: var(--elevated);
+  background: var(--paper-card);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+  border-radius: 14px;
+  transition: border-color 0.18s ease-out, transform 0.18s ease-out, box-shadow 0.18s ease-out;
+  box-shadow: 0 1px 2px rgba(31, 41, 55, 0.04);
 }
-
 .card:hover {
   transform: translateY(-3px);
-  border-color: rgba(34, 211, 238, 0.35);
-  box-shadow: 0 12px 40px rgba(34, 211, 238, 0.10);
+  border-color: rgba(217, 119, 6, 0.35);
+  box-shadow: 0 12px 36px rgba(217, 119, 6, 0.10), 0 2px 6px rgba(31, 27, 46, 0.04);
 }
 
 /* =====================================================
-   BUTTONS
+   BUTTONS — Cyan primary, 부드러운 인터랙션
 ===================================================== */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
+  padding: 0.78rem 1.6rem;
   background: var(--cyan);
   color: #FFFFFF;
-  font-family: 'Pretendard', system-ui, sans-serif;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-variation-settings: "wght" 600;
   font-weight: 600;
   font-size: 0.9rem;
-  border-radius: 8px;
-  border: none;
+  border-radius: 10px;
+  border: 1px solid var(--cyan);
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.15s ease-out;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
   min-height: 44px;
 }
 .btn-primary:hover {
   background: var(--cyan-hover);
-  box-shadow: 0 4px 20px var(--cyan-glow);
+  border-color: var(--cyan-hover);
   transform: translateY(-1px);
+  box-shadow: 0 8px 24px var(--cyan-glow);
 }
 .btn-primary:focus-visible {
   outline: 2px solid var(--cyan);
@@ -144,17 +162,18 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  background: transparent;
-  color: var(--text-secondary);
-  font-family: 'Pretendard', system-ui, sans-serif;
+  padding: 0.78rem 1.6rem;
+  background: var(--paper-card);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', sans-serif;
+  font-variation-settings: "wght" 500;
   font-weight: 500;
   font-size: 0.9rem;
-  border-radius: 8px;
-  border: 1px solid var(--border);
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.15s ease-out;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
   min-height: 44px;
 }
 .btn-ghost:hover {
@@ -178,8 +197,8 @@ body {
 
 .section-eyebrow {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--cyan);
   display: block;
@@ -187,20 +206,37 @@ body {
 }
 
 .section-title {
-  font-family: 'Pretendard', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 900;
-  line-height: 1.1;
-  color: var(--text-primary);
+  font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+  font-variation-settings: "wght" 800;
+  font-weight: 800;
+  font-size: clamp(2rem, 5.5vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--ink);
   margin-bottom: 1rem;
 }
 
 .divider {
-  width: 48px;
-  height: 2px;
+  width: 56px;
+  height: 3px;
   background: linear-gradient(90deg, var(--cyan), var(--violet));
   border-radius: 2px;
   margin-bottom: 3rem;
+}
+
+/* =====================================================
+   KINETIC TYPOGRAPHY — 스크롤에 따라 weight 변화
+===================================================== */
+@supports (animation-timeline: scroll()) {
+  .kinetic-hero h1 {
+    animation: weight-shift linear forwards;
+    animation-timeline: scroll(root);
+    animation-range: 0 60vh;
+  }
+  @keyframes weight-shift {
+    from { font-variation-settings: "wght" 900; letter-spacing: -0.045em; }
+    to   { font-variation-settings: "wght" 600; letter-spacing: -0.015em; }
+  }
 }
 
 /* =====================================================
@@ -210,24 +246,21 @@ body {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
 }
-
 @keyframes scrollBounce {
-  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
   50%       { transform: translateY(6px); opacity: 1; }
 }
 
-.animate-fade-up   { animation: fadeUp 0.7s ease-out both; }
-.animate-fade-in   { animation: fadeIn 0.5s ease-out both; }
+.animate-fade-up { animation: fadeUp 0.7s ease-out both; }
+.animate-fade-in { animation: fadeIn 0.5s ease-out both; }
 .delay-100 { animation-delay: 0.1s; }
 .delay-200 { animation-delay: 0.2s; }
 .delay-300 { animation-delay: 0.3s; }
@@ -238,9 +271,9 @@ body {
    SCROLLBAR
 ===================================================== */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-track { background: var(--paper); }
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--border-strong);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
@@ -254,6 +287,20 @@ body {
 }
 @media (min-width: 769px) {
   .mobile-dropdown { display: none !important; }
+}
+
+/* =====================================================
+   PRINT
+===================================================== */
+@media print {
+  body { background: #FFFFFF; color: #000000; }
+  .card { border-color: #000000 !important; background: #FFFFFF !important; box-shadow: none !important; page-break-inside: avoid; }
+  a { color: inherit !important; text-decoration: underline; }
+  header, .mobile-dropdown { display: none !important; }
+  .section { padding: 1.5rem 1rem !important; page-break-inside: avoid; }
+  .section-title { color: #000000 !important; }
+  .ambient-bg { background: #FFFFFF !important; }
+  .noise::after { display: none !important; }
 }
 
 /* =====================================================

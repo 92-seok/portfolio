@@ -38,10 +38,10 @@ export default function Nav() {
         right: 0,
         zIndex: 50,
         transition: 'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
-        background: scrolled ? 'rgba(22,22,26,0.88)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(14px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.07)' : '1px solid transparent',
-        boxShadow: scrolled ? '0 1px 20px rgba(0,0,0,0.3)' : 'none',
+        background: scrolled ? 'rgba(247,245,240,0.88)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(12px) saturate(140%)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(12px) saturate(140%)' : 'none',
+        borderBottom: scrolled ? '1px solid var(--border-strong)' : '1px solid transparent',
       }}
     >
       <nav
@@ -60,14 +60,14 @@ export default function Nav() {
           href="#"
           style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '0.9rem',
+            fontSize: '0.85rem',
             fontWeight: 700,
-            color: 'var(--cyan)',
+            color: 'var(--ink)',
             textDecoration: 'none',
-            letterSpacing: '0.05em',
+            letterSpacing: '0.04em',
           }}
         >
-          또비<span style={{ color: 'var(--text-muted)' }}>_dev</span>
+          또비<span style={{ color: 'var(--signal)' }}>_dev</span>
         </a>
 
         {/* 데스크탑 링크 */}
@@ -86,8 +86,8 @@ export default function Nav() {
                   textDecoration: 'none',
                   transition: 'color 0.15s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--cyan)')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--signal)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-muted)')}
               >
                 {link.label}
               </a>
@@ -97,27 +97,27 @@ export default function Nav() {
 
         {/* GitHub 링크 */}
         <a
-          href="https://github.com/ttobidev"
+          href="https://github.com/92-seok"
           target="_blank"
           rel="noopener noreferrer"
           style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '0.8rem',
-            color: 'var(--text-secondary)',
+            fontSize: '0.75rem',
+            color: 'var(--ink)',
             textDecoration: 'none',
-            border: '1px solid var(--border)',
+            border: '1px solid var(--ink)',
             padding: '0.4rem 0.9rem',
-            borderRadius: '6px',
-            transition: 'all 0.15s ease',
-            background: 'var(--elevated)',
+            borderRadius: '2px',
+            transition: 'background 0.15s ease, color 0.15s ease',
+            background: 'transparent',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'var(--cyan)';
-            e.currentTarget.style.color = 'var(--cyan)';
+            e.currentTarget.style.background = 'var(--ink)';
+            e.currentTarget.style.color = 'var(--paper)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'var(--border)';
-            e.currentTarget.style.color = 'var(--text-secondary)';
+            e.currentTarget.style.background = 'transparent';
+            e.currentTarget.style.color = 'var(--ink)';
           }}
           className="desktop-nav"
         >
@@ -160,9 +160,10 @@ export default function Nav() {
       {menuOpen && (
         <div
           style={{
-            background: 'rgba(22,22,26,0.96)',
-            backdropFilter: 'blur(14px)',
-            borderTop: '1px solid var(--border)',
+            background: 'rgba(247,245,240,0.96)',
+            backdropFilter: 'blur(12px) saturate(140%)',
+            WebkitBackdropFilter: 'blur(12px) saturate(140%)',
+            borderTop: '1px solid var(--border-strong)',
             padding: '1.5rem clamp(1.5rem, 5vw, 3rem)',
           }}
           className="mobile-dropdown"

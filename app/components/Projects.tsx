@@ -10,10 +10,10 @@ export default function Projects() {
   const [selected, setSelected] = useState<IProject | null>(null);
 
   return (
-    <section id="projects" className="section" style={{ background: 'var(--void)' }}>
+    <section id="projects" className="section" style={{ background: 'var(--paper)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <RevealWrapper direction="up">
-          <span className="section-eyebrow">03. Projects</span>
+          <span className="section-eyebrow">03 — Projects</span>
           <h2 className="section-title">프로젝트</h2>
           <div className="divider" />
         </RevealWrapper>

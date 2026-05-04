@@ -4,10 +4,10 @@ import RevealWrapper from './ui/RevealWrapper';
 
 export default function Contact() {
   return (
-    <section id="contact" className="section" style={{ background: 'var(--surface)' }}>
+    <section id="contact" className="section" style={{ background: 'var(--paper)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <RevealWrapper direction="up">
-          <span className="section-eyebrow">05. Contact</span>
+          <span className="section-eyebrow">05 — Contact</span>
           <h2 className="section-title">연락하기</h2>
           <div className="divider" />
         </RevealWrapper>
@@ -44,8 +44,8 @@ export default function Contact() {
                   </svg>
                 ),
                 label: 'GitHub',
-                value: 'github.com/seok2',
-                href: 'https://github.com/seok2',
+                value: 'github.com/92-seok',
+                href: 'https://github.com/92-seok',
               },
             ].map((item) => (
               <a
@@ -66,13 +66,13 @@ export default function Contact() {
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;
-                  el.style.borderColor = 'rgba(6,182,212,0.4)';
-                  el.style.background = 'rgba(6,182,212,0.04)';
+                  el.style.borderColor = 'var(--ink)';
+                  el.style.background = 'var(--paper-card)';
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget;
                   el.style.borderColor = 'var(--border)';
-                  el.style.background = 'var(--surface)';
+                  el.style.background = 'var(--paper-soft)';
                 }}
               >
                 <span style={{ color: 'var(--cyan)', flexShrink: 0 }}>{item.icon}</span>
@@ -104,7 +104,7 @@ export default function Contact() {
             ))}
           </div>
 
-          <a href="mailto:iss3210@naver.com" className="btn-primary">
+          <a href="mailto:isseo8010@gmail.com" className="btn-primary">
             메일 보내기
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

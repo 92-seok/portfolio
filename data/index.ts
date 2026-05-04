@@ -8,7 +8,7 @@ export interface IProject {
   stack: { frontend: string[]; backend: string[]; devops: string[] };
   troubles: { issue: string; cause: string; solution: string; result: string }[];
   outcomes: string[];
-  links: { live?: string; github?: string; blog?: string };
+  links: { live?: string; github?: string; blog?: string; docs?: string };
   period: string;
 }
 
@@ -35,28 +35,39 @@ export interface IProfile {
   companyPeriod: string;
   summary: string[];
   highlights: { label: string; desc: string }[];
+  vision: { title: string; description: string; bullets: string[] };
 }
 
 export const PROFILE: IProfile = {
   name: '서인석',
   nickname: '또비',
   role: '운영 환경과 사용자 흐름을 이해하는 웹 개발자',
-  email: 'iss3210@naver.com',
+  email: 'isseo8010@gmail.com',
   phone: '010-9297-6763',
   location: '경기 성남시',
   company: '㈜우보재난시스템',
-  companyPeriod: '2023.10 ~ 재직중 (2년 6개월)',
+  companyPeriod: '2024.05 ~ 현재 (1년)',
   summary: [
     'Vue 3에서 Next.js App Router로 시스템을 직접 마이그레이션하며 전체 아키텍처를 이해하는 개발자로 성장했습니다.',
     '관공서 납품 재난 시스템의 프론트엔드부터 서버 배포까지 실무 전반을 담당하며, 운영 환경에서 발생하는 이슈를 기능·UI 개선으로 해결해왔습니다.',
     '사용자 흐름을 분석해 장비 점검 업무 시간을 30분에서 10분으로 단축한 경험을 바탕으로, 실제 사용하는 사람에게 가치 있는 서비스를 만드는 것을 목표로 합니다.',
   ],
   highlights: [
-    { label: '재직 중', desc: '㈜우보재난시스템 · 대리' },
-    { label: '2년 6개월', desc: '실무 경력' },
+    { label: '1인 풀스택', desc: '기획부터 운영까지 전담' },
+    { label: '1년', desc: '실무 경력' },
     { label: 'Vue → Next.js', desc: '마이그레이션 경험' },
     { label: '업무 67% 단축', desc: '30분 → 10분 개선' },
   ],
+  vision: {
+    title: '앞으로의 방향',
+    description:
+      '운영 환경에서 익힌 감각을 바탕으로, 실제 사용하는 사람에게 닿는 서비스를 만드는 개발자가 되고자 합니다.',
+    bullets: [
+      '운영 이슈를 기능·UI 개선으로 풀어내는 문제 해결형 개발',
+      '프론트엔드 인터랙션과 백엔드 도메인 모델링 양쪽 모두 깊이 다루기',
+      '1인 풀스택 경험을 팀 협업과 시스템 설계까지 확장',
+    ],
+  },
 };
 
 export const SKILLS: ISkillGroup[] = [
@@ -97,6 +108,60 @@ export const SKILLS: ISkillGroup[] = [
 
 export const PROJECTS: IProject[] = [
   {
+    id: 'pawmart',
+    title: 'Pawmart 펫 e-commerce',
+    emoji: '🐾',
+    oneliner: '풀스택 펫 마켓플레이스 — React 19 + Spring Boot 4',
+    description:
+      'React 19 + Spring Boot 4 기반 풀스택 펫 e-commerce 사이트. 사용자 24+ 페이지 + 관리자 6 페이지를 모바일 퍼스트로 직접 설계·구현했습니다. JWT role-based 인증, 재고 동시성 제어, Toss Payments 통합, Pet Friendly Soft 자체 디자인 시스템까지 포함한 포트폴리오용 풀스택 프로젝트입니다.',
+    role: [
+      'React 19 + TypeScript + Tailwind v4 기반 24개 사용자 페이지 직접 설계·구현',
+      'Spring Boot 4 + JPA + MySQL 8 백엔드 12개 API 모듈 + Flyway 12 마이그레이션',
+      'JWT + Role-based 인증 이중 가드 (백엔드 SecurityConfig + 프론트 AdminRoute)',
+      '재고 동시성 제어 (@Version Optimistic Lock + MockMvc 통합 테스트)',
+      '관리자 대시보드 + 주문/상품/재고/회원 관리 페이지',
+      'Pet Friendly Soft 디자인 토큰 시스템 + Bento Hero + 마이크로 인터랙션',
+      'Toss Payments 통합 + 시안 4종 비교 검증 후 디자인 채택',
+    ],
+    stack: {
+      frontend: ['React 19', 'TypeScript', 'Vite 8', 'Tailwind v4', 'shadcn/ui', 'Zustand', 'lucide-react'],
+      backend: ['Spring Boot 4', 'Java 21', 'JPA / Hibernate', 'MySQL 8', 'Flyway', 'JWT', 'BCrypt'],
+      devops: ['Gradle', 'Toss Payments SDK', 'ESLint', 'GitHub'],
+    },
+    troubles: [
+      {
+        issue: '재고 동시 차감 시 race condition',
+        cause: '여러 사용자가 동시에 재고 1개 남은 상품 주문 시 음수 재고 발생 가능',
+        solution: '@Version 기반 Optimistic Lock 적용 + 충돌 시 retry 로직. MockMvc 통합 테스트로 동시 주문 시나리오 검증',
+        result: '동시 주문 상황에서 재고 음수 방지, 데이터 정합성 확보',
+      },
+      {
+        issue: 'admin 라우트에 일반 사용자도 UI 접근 가능',
+        cause: 'PrivateRoute가 isLoggedIn만 체크하고 role 분기 없음',
+        solution: 'AdminRoute 컴포넌트 신설 (role !== ADMIN → / redirect) + 백엔드 SecurityConfig에 hasRole(ADMIN) 적용해 이중 가드',
+        result: 'admin UI 비인가 노출 차단, 백엔드 데이터도 차단되어 양쪽으로 보호',
+      },
+      {
+        issue: 'Mock 데이터로 인한 백엔드 의존성 가림',
+        cause: 'API 실패 시 mock 데이터로 폴백되어 진짜 에러가 가려져 디버깅 어려움',
+        solution: '일반 화면의 mock 파일·fallback 코드 제거하고 명시적 에러 노출. 단 시연용 admin 대시보드만 폴백 유지',
+        result: '실제 백엔드 통신 검증 강화, 시연 환경은 별도 처리',
+      },
+    ],
+    outcomes: [
+      '24+ 사용자 페이지 + 6 관리자 페이지 풀스택 1인 구현',
+      '60+ 재사용 컴포넌트 + 12 API 모듈 + 12 DB 마이그레이션',
+      'JWT role-based 가드로 보안 영역 분리',
+      '시안 4종 비교 후 자체 디자인 시스템(Pet Friendly Soft) 채택',
+      '16-슬라이드 클라이언트 제안서 형식 발표 자료 작성',
+    ],
+    links: {
+      github: 'https://github.com/92-seok/project-web',
+      docs: '/docs/pawmart-portfolio.pptx',
+    },
+    period: '2026.04 ~ 2026.05',
+  },
+  {
     id: 'soha-dashboard',
     title: '소하천 통합 운영관리 시스템',
     emoji: '🌊',
@@ -134,7 +199,7 @@ export const PROJECTS: IProject[] = [
       '관공서 납품 실서비스 운영 중',
     ],
     links: { live: 'http://www.woobo.online:8000' },
-    period: '2023.10 ~ 재직중',
+    period: '2024.05 ~ 현재',
   },
   {
     id: 'reservoir-dashboard',
@@ -196,7 +261,7 @@ export const PROJECTS: IProject[] = [
       '실서비스 운영 중',
     ],
     links: { live: 'http://woobo.online' },
-    period: '2023.10 ~ 재직중',
+    period: '2024.05 ~ 현재',
   },
   {
     id: 'wobo-nextjs',
@@ -236,9 +301,9 @@ export const PROJECTS: IProject[] = [
 ];
 
 export const TIMELINE: ITimelineItem[] = [
-  { period: '2023.10 ~', event: '㈜우보재난시스템 입사', detail: '시스템사업부 · 웹개발 담당' },
-  { period: '2024.03', event: '저수지 수위 대시보드 개발', detail: '1인 풀스택 (Node.js + Vue 3)' },
-  { period: '2024.10', event: 'Next.js 마이그레이션 착수', detail: 'Vue 3 → Next.js App Router' },
-  { period: '2025.01', event: 'Vercel 배포 완료', detail: 'woobo-web.vercel.app 운영 시작' },
-  { period: '2025.04', event: '대리 승진', detail: '연간 우수사원 · 분기 칭찬사원 선정' },
+  { period: '2024.05 ~', event: '㈜우보재난시스템 입사', detail: '시스템사업부 · 웹개발 담당' },
+  { period: '2024.08', event: '저수지 수위 대시보드 개발', detail: '1인 풀스택 (Node.js + Vue 3)' },
+  { period: '2024.11', event: 'Next.js 마이그레이션 착수', detail: 'Vue 3 → Next.js App Router' },
+  { period: '2025.01', event: '운영 시스템 자체 배포', detail: 'XAMPP + PM2로 woobo.online 직접 운영' },
+  { period: '2025.07', event: '대리 승진', detail: '연간 우수사원 · 분기 칭찬사원 선정' },
 ];

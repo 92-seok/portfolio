@@ -3,10 +3,10 @@ import RevealWrapper from './ui/RevealWrapper';
 
 export default function Experience() {
   return (
-    <section id="experience" className="section" style={{ background: 'var(--surface)' }}>
+    <section id="experience" className="section" style={{ background: 'var(--paper-soft)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <RevealWrapper direction="up">
-          <span className="section-eyebrow">04. Experience</span>
+          <span className="section-eyebrow">04 — Experience</span>
           <h2 className="section-title">경력 / 타임라인</h2>
           <div className="divider" />
         </RevealWrapper>
@@ -20,14 +20,13 @@ export default function Experience() {
               top: 0,
               bottom: 0,
               width: '1px',
-              background: 'linear-gradient(180deg, var(--cyan), var(--violet), transparent)',
-              opacity: 0.25,
+              background: 'var(--border-strong)',
             }}
           />
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
             {TIMELINE.map((item, i) => (
-              <RevealWrapper key={item.period} direction="left" delay={i * 100}>
+              <RevealWrapper key={item.period} direction="up" delay={i * 100}>
                 <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
                   {/* 기간 */}
                   <div
@@ -49,13 +48,12 @@ export default function Experience() {
                   <div
                     style={{
                       flexShrink: 0,
-                      width: '10px',
-                      height: '10px',
+                      width: '9px',
+                      height: '9px',
                       borderRadius: '50%',
-                      background: i === 0 ? 'var(--cyan)' : 'var(--elevated)',
-                      border: `2px solid ${i === 0 ? 'var(--cyan)' : 'var(--border)'}`,
-                      marginTop: '0.25rem',
-                      boxShadow: i === 0 ? '0 0 10px var(--cyan)' : 'none',
+                      background: i === 0 ? 'var(--signal)' : 'var(--paper-card)',
+                      border: `1.5px solid ${i === 0 ? 'var(--signal)' : 'var(--border-strong)'}`,
+                      marginTop: '0.3rem',
                     }}
                   />
 

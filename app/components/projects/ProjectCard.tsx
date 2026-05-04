@@ -1,53 +1,53 @@
 import { IProject } from '@/data';
 
 const FONT_MONO = "'JetBrains Mono', monospace";
-const FONT_BODY = "'Pretendard', system-ui, sans-serif";
+const FONT_BODY = "'Pretendard Variable', 'Pretendard', system-ui, sans-serif";
 
 export default function ProjectCard({ project, onClick }: { project: IProject; onClick: () => void }) {
   return (
     <article
       className="card"
       onClick={onClick}
-      style={{ padding: '1.75rem', cursor: 'pointer' }}
+      style={{ padding: '1.75rem', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}
       tabIndex={0}
       role="button"
       aria-label={`${project.title} 상세보기`}
       onKeyDown={(e) => e.key === 'Enter' && onClick()}
     >
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1rem' }}>
-        <span aria-hidden="true" style={{ fontSize: '2rem' }}>{project.emoji}</span>
-        <span
-          style={{
-            fontFamily: FONT_MONO,
-            fontSize: '0.65rem',
-            color: 'var(--text-muted)',
-            background: 'var(--surface)',
-            padding: '0.25rem 0.6rem',
-            borderRadius: '6px',
-            border: '1px solid var(--border)',
-          }}
-        >
-          {project.period}
-        </span>
-      </div>
-
+      {/* 1. 타이틀 */}
       <h3
         style={{
           fontFamily: FONT_BODY,
-          fontSize: '1.15rem',
+          fontSize: '1.2rem',
           fontWeight: 800,
-          color: 'var(--text-primary)',
-          marginBottom: '0.5rem',
+          color: 'var(--ink)',
+          letterSpacing: '-0.02em',
           lineHeight: 1.3,
+          marginBottom: '0.5rem',
         }}
       >
         {project.title}
       </h3>
+
+      {/* 2. 날짜 */}
+      <span
+        style={{
+          fontFamily: FONT_MONO,
+          fontSize: '0.7rem',
+          color: 'var(--cyan)',
+          letterSpacing: '0.05em',
+          marginBottom: '1rem',
+        }}
+      >
+        {project.period}
+      </span>
+
+      {/* 3. 웹서비스 소개 */}
       <p
         style={{
           fontFamily: FONT_BODY,
           fontSize: '0.875rem',
-          color: 'var(--text-secondary)',
+          color: 'var(--ink-muted)',
           lineHeight: 1.65,
           marginBottom: '1.25rem',
         }}
@@ -55,6 +55,7 @@ export default function ProjectCard({ project, onClick }: { project: IProject; o
         {project.oneliner}
       </p>
 
+      {/* 4. 스택 태그 */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.25rem' }}>
         {[...project.stack.frontend, ...project.stack.backend].slice(0, 4).map((t) => (
           <span
@@ -62,9 +63,9 @@ export default function ProjectCard({ project, onClick }: { project: IProject; o
             style={{
               fontFamily: FONT_MONO,
               fontSize: '0.68rem',
-              color: 'var(--cyan)',
-              background: 'var(--cyan-subtle)',
-              border: '1px solid rgba(8,145,178,0.15)',
+              color: 'var(--ink-muted)',
+              background: 'var(--paper-soft)',
+              border: '1px solid var(--border)',
               padding: '0.2rem 0.55rem',
               borderRadius: '999px',
             }}
@@ -74,14 +75,17 @@ export default function ProjectCard({ project, onClick }: { project: IProject; o
         ))}
       </div>
 
+      {/* 5. 자세히 보기 */}
       <div
         style={{
+          marginTop: 'auto',
           display: 'flex',
           alignItems: 'center',
           gap: '0.4rem',
           fontFamily: FONT_MONO,
-          fontSize: '0.75rem',
+          fontSize: '0.72rem',
           color: 'var(--cyan)',
+          letterSpacing: '0.04em',
         }}
       >
         자세히 보기

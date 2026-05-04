@@ -54,8 +54,9 @@ export default function ProjectModal({ project, onClose }: { project: IProject; 
       style={{
         position: 'fixed',
         inset: 0,
-        background: 'rgba(14,14,18,0.82)',
-        backdropFilter: 'blur(10px)',
+        background: 'rgba(14,14,16,0.45)',
+        backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
         zIndex: 9999,
         display: 'flex',
         alignItems: 'center',
@@ -126,9 +127,6 @@ export default function ProjectModal({ project, onClose }: { project: IProject; 
 
           {/* 제목 */}
           <div style={{ marginBottom: '1.5rem' }}>
-            <span aria-hidden="true" style={{ fontSize: '2rem', display: 'block', marginBottom: '0.5rem' }}>
-              {project.emoji}
-            </span>
             <h3
               id="modal-title"
               style={{ fontFamily: FONT_BODY, fontSize: '1.5rem', fontWeight: 900, color: 'var(--text-primary)', marginBottom: '0.5rem' }}
@@ -215,12 +213,12 @@ export default function ProjectModal({ project, onClose }: { project: IProject; 
           )}
 
           {/* 성과 */}
-          <div style={{ marginBottom: (project.links.live || project.links.github || project.links.blog) ? '1.75rem' : 0 }}>
+          <div style={{ marginBottom: (project.links.live || project.links.github || project.links.blog || project.links.docs) ? '1.75rem' : 0 }}>
             <SectionLabel>성과</SectionLabel>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
               {project.outcomes.map((o) => (
                 <li key={o} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontFamily: FONT_BODY, fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                  <span style={{ color: 'var(--violet)', flexShrink: 0 }}>→</span>
+                  <span style={{ color: 'var(--cyan)', flexShrink: 0 }}>→</span>
                   {o}
                 </li>
               ))}
@@ -228,7 +226,7 @@ export default function ProjectModal({ project, onClose }: { project: IProject; 
           </div>
 
           {/* 링크 */}
-          {(project.links.live || project.links.github || project.links.blog) && (
+          {(project.links.live || project.links.github || project.links.blog || project.links.docs) && (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', paddingTop: '1.25rem', borderTop: '1px solid var(--border-subtle)' }}>
               {project.links.live && (
                 <a
@@ -287,13 +285,36 @@ export default function ProjectModal({ project, onClose }: { project: IProject; 
                     border: '1px solid var(--border)', borderRadius: '8px',
                     textDecoration: 'none', transition: 'border-color 0.15s ease, color 0.15s ease',
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--violet)'; e.currentTarget.style.color = 'var(--violet)'; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--cyan)'; e.currentTarget.style.color = 'var(--cyan)'; }}
                   onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
                 >
                   <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M1 2.5h12M1 5.5h8M1 8.5h10M1 11.5h6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
                   </svg>
                   블로그
+                </a>
+              )}
+              {project.links.docs && (
+                <a
+                  href={project.links.docs}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                    padding: '0.55rem 1.1rem',
+                    background: 'transparent', color: 'var(--cyan)',
+                    fontFamily: FONT_BODY, fontSize: '0.82rem', fontWeight: 600,
+                    border: '1px solid var(--cyan)', borderRadius: '8px',
+                    textDecoration: 'none', transition: 'background 0.15s ease, color 0.15s ease',
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--cyan)'; e.currentTarget.style.color = '#FFFFFF'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--cyan)'; }}
+                >
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M7 1v8M3 6l4 4 4-4M2 12h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  프로젝트 소개 PPT
                 </a>
               )}
             </div>

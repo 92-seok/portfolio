@@ -8,7 +8,7 @@ export default function About() {
     <section id="about" className="section">
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <RevealWrapper direction="up">
-          <span className="section-eyebrow">01. About Me</span>
+          <span className="section-eyebrow">01 — About Me</span>
           <h2 className="section-title">개발자 소개</h2>
           <div className="divider" />
         </RevealWrapper>
@@ -91,9 +91,7 @@ export default function About() {
               >
                 {[
                   { label: 'Email', value: PROFILE.email, href: `mailto:${PROFILE.email}` },
-                  { label: 'Phone', value: PROFILE.phone, href: `tel:${PROFILE.phone}` },
                   { label: 'Location', value: PROFILE.location, href: undefined },
-                  { label: 'Company', value: `${PROFILE.company} · ${PROFILE.companyPeriod}`, href: undefined },
                 ].map(({ label, value, href }) => (
                   <div key={label} style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem' }}>
                     <span
@@ -176,40 +174,98 @@ export default function About() {
               </RevealWrapper>
             ))}
 
-            {/* 수상 카드 */}
+            {/* Vision — 앞으로의 방향 */}
             <RevealWrapper direction="up" delay={520} style={{ gridColumn: '1 / -1' }}>
               <div
                 className="card"
                 style={{
-                  padding: '1.25rem 1.5rem',
-                  borderLeft: '3px solid var(--violet)',
-                  borderRadius: '12px',
+                  padding: '1.5rem 1.75rem',
+                  borderLeft: '3px solid var(--cyan)',
+                  background:
+                    'linear-gradient(180deg, var(--paper-card) 0%, var(--cyan-subtle) 100%)',
                 }}
               >
-                <p
+                <div
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: '0.65rem',
-                    color: 'var(--violet)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    marginBottom: '0.5rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.6rem',
+                    marginBottom: '0.85rem',
                   }}
                 >
-                  Awards
-                </p>
+                  <span
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: '0.65rem',
+                      color: 'var(--cyan)',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.18em',
+                    }}
+                  >
+                    Vision
+                  </span>
+                  <span style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+                  <span
+                    style={{
+                      fontFamily: "'Pretendard Variable', sans-serif",
+                      fontSize: '0.95rem',
+                      fontWeight: 700,
+                      color: 'var(--ink)',
+                    }}
+                  >
+                    {/* {PROFILE.vision.title} */}
+                  </span>
+                </div>
+
                 <p
                   style={{
-                    fontFamily: "'Pretendard', system-ui, sans-serif",
-                    fontSize: '0.875rem',
-                    color: 'var(--text-secondary)',
-                    lineHeight: 1.6,
+                    fontFamily: "'Pretendard Variable', sans-serif",
+                    fontSize: '0.88rem',
+                    color: 'var(--ink-muted)',
+                    lineHeight: 1.7,
+                    marginBottom: '1rem',
                   }}
                 >
-                  입사 1년 6개월 만에 <strong style={{ color: 'var(--text-primary)' }}>사원 → 대리 승진</strong>
-                  <br />
-                  연간 우수사원 · 분기 칭찬사원 선정
+                  {PROFILE.vision.description}
                 </p>
+
+                <ul
+                  style={{
+                    listStyle: 'none',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.5rem',
+                    padding: 0,
+                  }}
+                >
+                  {PROFILE.vision.bullets.map((b) => (
+                    <li
+                      key={b}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '0.55rem',
+                        fontFamily: "'Pretendard Variable', sans-serif",
+                        fontSize: '0.85rem',
+                        color: 'var(--ink)',
+                        lineHeight: 1.6,
+                      }}
+                    >
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          color: 'var(--cyan)',
+                          marginTop: '0.05rem',
+                          flexShrink: 0,
+                          fontWeight: 700,
+                        }}
+                      >
+                        →
+                      </span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </RevealWrapper>
           </div>
